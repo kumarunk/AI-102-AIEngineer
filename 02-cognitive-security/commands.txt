@@ -1,0 +1,27 @@
+az cognitiveservices account keys regenerate --name ai102cognitiveservice --resource-group ai102 --key-name key1
+
+        ai102kvkk 
+
+
+az ad sp create-for-rbac -n "api://ai102-sp" --role owner --scopes subscriptions/65d9ce7c-a52d-4364-9ee7-55f6a845c671/resourceGroups/ai102
+
+        {
+        "appId": "a09b4dfe-9cf8-47fc-8ed0-727c553a8128",
+        "displayName": "api://ai102-sp",
+        "password": "Y2a8Q~x4wd6SVXgcjToHr.Xagi9uKcbMkCe.wc6x",
+        "tenant": "0e530a84-919f-4d36-99e9-351702bf1832"
+        }
+
+az account show
+
+az ad sp show --id a09b4dfe-9cf8-47fc-8ed0-727c553a8128 --query id --out tsv
+
+        a03312ff-184f-46df-bc1a-4267881b08c6
+
+az keyvault set-policy -n ai102kvkk  --object-id a03312ff-184f-46df-bc1a-4267881b08c6 --secret-permissions get list
+
+dotnet add package Azure.AI.TextAnalytics --version 5.1.0
+dotnet add package Azure.Identity --version 1.5.0
+dotnet add package Azure.Security.KeyVault.Secrets --version 4.2.0-beta.3
+
+

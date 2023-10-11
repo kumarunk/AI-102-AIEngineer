@@ -1,0 +1,33 @@
+@resourceRegion = eastus
+@apiVersion = 2023-02-01-preview
+@subscriptionKey = acc2c108f8a447b3ad3b96d6ba5e40a1
+
+### Generate a caption for the original image
+
+POST https://{{resourceRegion}}.api.cognitive.microsoft.com/computervision/imageanalysis:analyze?api-version={{apiVersion}}&mode=backgroundRemoval&features=caption HTTP/1.1
+Ocp-Apim-Subscription-Key: {{subscriptionKey}}
+Content-Type: application/json
+
+{
+    "url": "https://raw.githubusercontent.com/MicrosoftLearning/mslearn-cognitive-vision/main/assets/images/try-it-out/store.jpg"
+}
+
+### Background removal
+
+POST https://{{resourceRegion}}.api.cognitive.microsoft.com/computervision/imageanalysis:segment?api-version={{apiVersion}}&mode=backgroundRemoval HTTP/1.1
+Ocp-Apim-Subscription-Key: {{subscriptionKey}}
+Content-Type: application/json
+
+{
+    "url": "https://raw.githubusercontent.com/MicrosoftLearning/mslearn-cognitive-vision/main/assets/images/try-it-out/store.jpg"
+}
+
+### Generate a caption for the image with the background removed
+
+POST https://{{resourceRegion}}.api.cognitive.microsoft.com/computervision/imageanalysis:analyze?api-version={{apiVersion}}&mode=backgroundRemoval&features=caption HTTP/1.1
+Ocp-Apim-Subscription-Key: {{subscriptionKey}}
+Content-Type: application/json
+
+{
+    "url": "https://raw.githubusercontent.com/MicrosoftLearning/mslearn-cognitive-vision/main/assets/images/try-it-out/store-background-removal.png"
+}
